@@ -1,0 +1,21 @@
+#:kivy 1.8.0
+
+
+<ElarLayout>:
+    GridLayout:
+        rows: 2
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5 }
+        size_hint: 0.2, None
+        width: max(self.width, 100)
+        height: self.width * 2
+        Button:
+            Image:
+                source: 'icons/up.png'
+                pos: self.parent.pos
+                size: self.parent.size
+        Button:
+            Image:
+                source: 'icons/down.png'
+                pos: self.parent.pos
+                size: self.parent.size
+        
