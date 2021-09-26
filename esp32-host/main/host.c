@@ -11,7 +11,7 @@ int app_main(void)
     while (1)
     {
         char signal = acquire_signal(server_socket, &name, &name_len);
-        printf("%hhx\n", signal);
+        printf("%d\n", signal);
     }
 
     return 0;
