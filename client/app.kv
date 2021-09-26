@@ -1,5 +1,14 @@
 #:kivy 1.8.0
 
+<RoundedButton@Button>:
+    background_color: 0,0,0,0  # the last zero is the critical on, make invisible
+    canvas.before:
+        Color:
+            rgba: (.4,.4,.4,1) if self.state=='normal' else (0,.7,.7,1)  # visual feedback of press
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [100,]
 
 <ElarLayout>:
     GridLayout:
@@ -8,14 +17,8 @@
         size_hint: 0.2, None
         width: max(self.width, 100)
         height: self.width * 2
-        Button:
-            Image:
-                source: 'icons/up.png'
-                pos: self.parent.pos
-                size: self.parent.size
-        Button:
-            Image:
-                source: 'icons/down.png'
-                pos: self.parent.pos
-                size: self.parent.size
+        RoundedButton:
+            background_normal: 'icons/up.png'
+        RoundedButton:
+            background_normal: 'icons/down.png'
         

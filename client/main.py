@@ -9,11 +9,12 @@ from kivy.lang import Builder
 
 Builder.load_file('app.kv')
 
+class RoundedButton(Button):
+    pass
+
 
 class ElarLayout(FloatLayout):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
+    pass
 
 class ElarClientApp(App):
     def build(self):
