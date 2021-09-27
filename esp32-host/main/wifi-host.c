@@ -94,7 +94,7 @@ int setup_server(ushort port, int recv_timeout, struct sockaddr_in *name, sockle
 
 char acquire_signal(int server_socket, struct sockaddr_in *name, socklen_t *name_len)
 {
-    char signal = 0;
+    signed char signal = 0;
     recvfrom(server_socket, &signal, sizeof(char), 0, (struct sockaddr *)name, name_len);
     return signal;
 }

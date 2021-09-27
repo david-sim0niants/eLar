@@ -10,7 +10,7 @@ int app_main(void)
     int server_socket = setup_server(1234, 100000, &name, &name_len);
     while (1)
     {
-        char signal = acquire_signal(server_socket, &name, &name_len);
+        signed char signal = acquire_signal(server_socket, &name, &name_len);
         printf("%d\n", signal);
     }
 

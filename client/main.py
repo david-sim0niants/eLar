@@ -11,9 +11,6 @@ from kivy.clock import Clock
 
 Builder.load_file('app.kv')
 
-class RoundedButton(Button):
-    pass
-
 
 def signal_button_callback(button : Button, client_socket, signal):
     if button.state == 'down':
