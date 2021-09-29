@@ -16,6 +16,7 @@ def signal_button_callback(button : Button, client_socket, signal):
     if button.state == 'down':
         if client_socket is not None:
             client_socket.send_signal(signal)
+            print(signal)
 
 
 class ElarLayout(FloatLayout):
@@ -27,8 +28,20 @@ class ElarLayout(FloatLayout):
         self.up_button = self.ids.up_button
         self.down_button = self.ids.down_button
 
-        self.send_up_signal_event = Clock.schedule_interval(lambda dt: signal_button_callback(self.up_button, client_socket, 1), 0.0)
-        self.send_down_signal_event = Clock.schedule_interval(lambda dt: signal_button_callback(self.down_button, client_socket, -1), 0.0)
+
+        def up_button_signal_callback(dt):
+            nonlocal self
+            if self.down_button.state != 'down':
+                signal_button_callback(self.up_button, client_socket, 1)
+
+        def down_button_signal_callback(dt):
+            nonlocal self
+            if self.up_button.state != 'down':
+                signal_button_callback(self.down_button, client_socket, -1)
+
+
+        self.send_up_signal_event = Clock.schedule_interval(up_button_signal_callback, 0.0)
+        self.send_down_signal_event = Clock.schedule_interval(down_button_signal_callback, 0.0)
 
 
 class ElarClientApp(App):
