@@ -3,20 +3,19 @@
 #include <driver/gpio.h>
 
 
-#define GPIO_IN_UP GPIO_NUM_13
-#define GPIO_OUT_UP GPIO_NUM_12
+#define GPIO_00 GPIO_NUM_26
+#define GPIO_01 GPIO_NUM_25
 
-#define GPIO_IN_DOWN GPIO_NUM_14
-#define GPIO_OUT_DOWN GPIO_NUM_27
+#define GPIO_10 GPIO_NUM_14
+#define GPIO_11 GPIO_NUM_27
 
 
 int app_main(void)
 {
-    gpio_set_direction(GPIO_IN_UP, GPIO_MODE_INPUT);
-    gpio_set_direction(GPIO_OUT_UP, GPIO_MODE_INPUT_OUTPUT);
-
-    gpio_set_direction(GPIO_IN_DOWN, GPIO_MODE_INPUT);
-    gpio_set_direction(GPIO_OUT_DOWN, GPIO_MODE_INPUT_OUTPUT);
+    gpio_set_direction(GPIO_00, GPIO_MODE_OUTPUT);
+    gpio_set_direction(GPIO_01, GPIO_MODE_OUTPUT);
+    gpio_set_direction(GPIO_10, GPIO_MODE_OUTPUT);
+    gpio_set_direction(GPIO_11, GPIO_MODE_OUTPUT);
 
     wifi_start();
     struct sockaddr_in name;
@@ -27,24 +26,24 @@ int app_main(void)
         signed char signal = acquire_signal(server_socket, &name, &name_len);
         if (signal == 1)
         {
-            gpio_set_level(GPIO_IN_UP, 1);
-            gpio_set_level(GPIO_OUT_UP, 1);
-            gpio_set_level(GPIO_IN_DOWN, 0);
-            gpio_set_level(GPIO_OUT_DOWN, 0);
+            gpio_set_level(GPIO_00, 1);
+            gpio_set_level(GPIO_01, 1);
+            gpio_set_level(GPIO_10, 0);
+            gpio_set_level(GPIO_11, 0);
         }
         else if (signal == -1)
         {
-            gpio_set_level(GPIO_IN_UP, 0);
-            gpio_set_level(GPIO_OUT_UP, 0);
-            gpio_set_level(GPIO_IN_DOWN, 1);
-            gpio_set_level(GPIO_OUT_DOWN, 1);
+            gpio_set_level(GPIO_00, 0);
+            gpio_set_level(GPIO_01, 0);
+            gpio_set_level(GPIO_10, 1);
+            gpio_set_level(GPIO_11, 1);
         }
         else
         {
-            gpio_set_level(GPIO_IN_UP, 0);
-            gpio_set_level(GPIO_OUT_UP, 0);
-            gpio_set_level(GPIO_IN_DOWN, 0);
-            gpio_set_level(GPIO_OUT_DOWN, 0);
+            gpio_set_level(GPIO_00, 0);
+            gpio_set_level(GPIO_01, 0);
+            gpio_set_level(GPIO_10, 0);
+            gpio_set_level(GPIO_11, 0);
         }
 
         printf("%d\n", signal);
