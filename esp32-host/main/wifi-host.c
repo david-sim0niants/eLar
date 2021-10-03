@@ -76,7 +76,7 @@ int setup_server(ushort port, int recv_timeout, struct sockaddr_in *name, sockle
 
     struct timeval timeout = {
         .tv_sec = 0,
-        .tv_usec = 100000
+        .tv_usec = recv_timeout
     };
     setsockopt(server_socket, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
 
