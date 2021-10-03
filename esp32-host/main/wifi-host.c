@@ -7,7 +7,7 @@
 
 
 #ifndef HOST_WIFI_SSID
-#define HOST_WIFI_SSID "ESP32"
+#define HOST_WIFI_SSID "eLar"
 #endif
 
 #ifndef HOST_WIFI_PWD

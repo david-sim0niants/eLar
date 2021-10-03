@@ -6,8 +6,8 @@
 #define GPIO_00 GPIO_NUM_26
 #define GPIO_01 GPIO_NUM_25
 
-#define GPIO_10 GPIO_NUM_14
-#define GPIO_11 GPIO_NUM_27
+#define GPIO_10 GPIO_NUM_33
+#define GPIO_11 GPIO_NUM_32
 
 
 int app_main(void)
